@@ -1,0 +1,571 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <meta charset="utf-8">
+    <style>
+      input[type="file"] {
+          display: none;
+      }
+
+      .box2 {
+          padding: 0.5em 1em;
+          margin: 2em 0;
+          font-weight: bold;
+          color: #6091d3;/*文字色*/
+          background: #FFF;
+          border: solid 3px #00050a;/*線*/
+          border-radius: 10px;/*角の丸み*/
+      }
+
+      .box2 p {
+          margin: 0; 
+          padding: 0;
+      }
+
+      .circle {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+          }
+
+      h4 {
+        /*線の種類（実線） 太さ 色*/
+        border-bottom: solid 3px black;
+      }
+      .my-radio {
+        position: relative;
+        padding-left: 28px;
+        margin-left: 25;
+        margin-right: 25;
+        cursor: pointer;
+        user-select: none;
+      }
+      /* inputは非表示にする */
+      .my-radio input {
+        display: none;
+      }
+      /* 常に表示する枠線の円 */
+      .radio-mark {
+        position: absolute;
+        top: 0; /* 上からの位置 */
+        left: 0;
+        height: 40px; /* 大きさ */
+        width: 40px; /* 大きさ */
+        border: solid 2px #d4dae2; /* 線 */
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
+      .radio-mark1 {
+        position: absolute;
+        top: 0; /* 上からの位置 */
+        left: 0;
+        height: 40px; /* 大きさ */
+        width: 40px; /* 大きさ */
+        border: solid 2px #d4dae2; /* 線 */
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
+      /* 選択時に重ねる円 */
+      .radio-mark:after {
+        content: "";
+        position: absolute;
+        background: #2e80ff; /* 色 */
+        border-radius: 50%;
+        top: 1px;
+        bottom: 1px;
+        left: 1px;
+        right: 1px;
+        opacity: 0; /* 透明にしておく */
+      }
+      /* 選択時に重ねた円の透明を解除 */
+      .my-radio input:checked + .radio-mark:after {
+        opacity: 1;
+      }
+    </style>
+</head>
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">LoveP</p>
+        <nav class="my-2 my-md-0 me-md-3">
+          <a class="p-2 text-dark" href="/">LovePとは？</a>
+          <a class="p-2 text-dark" href="/profile_edit">基本情報の編集</a>
+          <a class="p-2 text-dark" href="/add_girl">女の子の追加</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="/logout">ログアウト</a>
+    </header>
+<main>
+    <div class="px-4 py-5 my-5 text-center">
+    <div class="jumbotron">
+        <h2>愛着スタイルアンケート</h2>
+    </div>
+    <br>
+    <h4>質問1</h4>
+    <h5>私はそれほど気にせずに恋人(相手)に頼ることができる。</h5>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="selection1" id="radio1" value="a">
+        <label class="form-check-label" for="radio1">
+          yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="selection1" id="radio1" value="b">
+        <label class="form-check-label" for="radio1">
+          no
+        </label>
+      </div>
+      <br>
+      <h4>質問2</h4>
+      <h5>私はほとんど全てのことを恋人(相手)に打ち明ける。</h5>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="selection2" id="radio2" value="a">
+          <label class="form-check-label" for="radio2">
+            yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="selection2" id="radio2" value="b">
+          <label class="form-check-label" for="radio2">
+            no
+          </label>
+        </div>
+        <br>
+        <h4>質問3</h4>
+        <h5>私は恋人(相手)に色々なことを相談する。</h5>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="selection3" id="radio3" value="a">
+            <label class="form-check-label" for="radio3">
+              yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="selection3" id="radio3" value="b">
+            <label class="form-check-label" for="radio3">
+              no
+            </label>
+          </div>
+          <br>
+          <h4>質問4</h4>
+          <h5>私は、気楽に恋人(相手)に頼れる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection4" id="radio4" value="a">
+              <label class="form-check-label" for="radio4">
+                yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection5" id="radio4" value="b">
+              <label class="form-check-label" for="radio4">
+                no
+              </label>
+            </div>
+            <br>
+          <h4>質問5</h4>
+          <h5>恋人(相手)に心を開くのはあまり心地良いものではない。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection5" id="radio5" value="a">
+              <label class="form-check-label" for="radio5">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection5" id="radio5" value="b">
+              <label class="form-check-label" for="radio5">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問6</h4>
+          <h5>私はたいてい自分の問題や関心事について恋人(相手)と話し合う。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection6" id="radio6" value="a">
+              <label class="form-check-label" for="radio6">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection6" id="radio6" value="b">
+              <label class="form-check-label" for="radio6">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問7</h4>
+          <h5>私は、自分の考えや感情を恋人(相手)と気楽に共有できる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection7" id="radio7" value="a">
+              <label class="form-check-label" for="radio7">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection7" id="radio7" value="b">
+              <label class="form-check-label" for="radio7">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問8</h4>
+          <h5>私が心の中でどんなことを感じているか恋人(相手)に見せたくない。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection8" id="radio8" value="a">
+              <label class="form-check-label" for="radio8">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection8" id="radio8" value="b">
+              <label class="form-check-label" for="radio8">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問9</h4>
+          <h5>必要な時に恋人(相手)を頼れることは、私にとって助けになる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection9" id="radio9" value="a">
+              <label class="form-check-label" for="radio9">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection9" id="radio9" value="b">
+              <label class="form-check-label" for="radio9">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問10</h4>
+          <h5>恋人(相手)とはそれほど親しくならない方が良い。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection10" id="radio10" value="a">
+              <label class="form-check-label" for="radio10">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection10" id="radio10" value="b">
+              <label class="form-check-label" for="radio10">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問11</h4>
+          <h5>私は、恋人(相手)から見捨てられる心配などほとんどしない。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection11" id="radio11" value="a">
+              <label class="form-check-label" for="radio11">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection11" id="radio11" value="b">
+              <label class="form-check-label" for="radio11">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問12</h4>
+          <h5>恋人(相手)があまり親密になろうとすると、不快に思えてしまう。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection12" id="radio12" value="a">
+              <label class="form-check-label" for="radio12">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection12" id="radio12" value="b">
+              <label class="form-check-label" for="radio12">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問13</h4>
+          <h5>恋人(相手)は私自身や私の欲求を本当に理解してくれている。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection13" id="radio13" value="a">
+              <label class="form-check-label" for="radio13">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection13" id="radio13" value="b">
+              <label class="form-check-label" for="radio13">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問14</h4>
+          <h5>私は恋人(相手)に対して気軽に愛情を表せる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection14" id="radio14" value="a">
+              <label class="form-check-label" for="radio14">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection14" id="radio14" value="b">
+              <label class="form-check-label" for="radio14">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問15</h4>
+          <h5>恋人(相手)と親しくなっていくことはとても心地良いことだ。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection15" id="radio15" value="a">
+              <label class="form-check-label" for="radio15">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection15" id="radio15" value="b">
+              <label class="form-check-label" for="radio15">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問16</h4>
+          <h5>私は、自分が恋人(相手)を思っているほどには、恋人(相手)は自分のことを思ってくれていないのではないかと心配になる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection16" id="radio16" value="a">
+              <label class="form-check-label" for="radio16">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection16" id="radio16" value="b">
+              <label class="form-check-label" for="radio16">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問17</h4>
+          <h5>私は、恋人(相手)が本当は私のことを好きではないのじゃないかとよく心配になる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection17" id="radio17" value="a">
+              <label class="form-check-label" for="radio17">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection17" id="radio17" value="b">
+              <label class="form-check-label" for="radio17">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問18</h4>
+          <h5>恋人(相手)に対して自分の気持ちを伝える時、私は相手が自分と同じように思ってくれてはいないのではないかと不安になることがある。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection18" id="radio18" value="a">
+              <label class="form-check-label" for="radio18">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection18" id="radio18" value="b">
+              <label class="form-check-label" for="radio18">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問19</h4>
+          <h5>私は、よく恋人(相手)が自分と一緒にいたくなくなるのではないかと心配になる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection19" id="radio19" value="a">
+              <label class="form-check-label" for="radio19">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection19" id="radio19" value="b">
+              <label class="form-check-label" for="radio19">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問20</h4>
+          <h5>恋人(相手)の自分への気持ちが、私の恋人(相手)への気持ちと同じぐらい強かったらいいのに、とよく思うことがある。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection20" id="radio20" value="a">
+              <label class="form-check-label" for="radio20">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection20" id="radio20" value="b">
+              <label class="form-check-label" for="radio20">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問21</h4>
+          <h5>私は恋人(相手)の愛情を失うのではないかと不安になる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection21" id="radio21" value="a">
+              <label class="form-check-label" for="radio21">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection21" id="radio21" value="b">
+              <label class="form-check-label" for="radio21">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問22</h4>
+          <h5>恋人(相手)が自分の目の前にいない時、彼(彼女)が他の誰かに関心を持つのではないかと心配になってしまう。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection22" id="radio22" value="a">
+              <label class="form-check-label" for="radio22">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection22" id="radio22" value="b">
+              <label class="form-check-label" for="radio22">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問23</h4>
+          <h5>私は自分の恋愛関係について色々と考えて、不安になることがある。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection23" id="radio23" value="a">
+              <label class="form-check-label" for="radio23">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection23" id="radio23" value="b">
+              <label class="form-check-label" for="radio23">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問24</h4>
+          <h5>私は、恋人(相手)から見捨てられる心配などほとんどしない。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection24" id="radio24" value="a">
+              <label class="form-check-label" for="radio24">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection24" id="radio24" value="b">
+              <label class="form-check-label" for="radio24">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問25</h4>
+          <h5>私は、他人と比べて劣っているのではないかと心配になるときがある。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection25" id="radio25" value="a">
+              <label class="form-check-label" for="radio25">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection25" id="radio25" value="b">
+              <label class="form-check-label" for="radio25">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問26</h4>
+          <h5>恋人(相手)が自分から離れていくなんてことはほとんど気にならない。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection26" id="radio26" value="a">
+              <label class="form-check-label" for="radio26">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection26" id="radio26" value="b">
+              <label class="form-check-label" for="radio26">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問27</h4>
+          <h5>私の親密さへの欲求は時々人々を怖がらせてしまう。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection27" id="radio27" value="a">
+              <label class="form-check-label" for="radio27">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection27" id="radio27" value="b">
+              <label class="form-check-label" for="radio27">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問28</h4>
+          <h5>私の恋人(相手)は、私が思うほどには親密になりたくないのではないかと思う。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection28" id="radio28" value="a">
+              <label class="form-check-label" for="radio28">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection28" id="radio28" value="b">
+              <label class="form-check-label" for="radio28">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問29</h4>
+          <h5>いったん私のことを知つてしまったら、恋人(相手)は本当の私の姿を好きになってくれないのではないかと不安になる。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection29" id="radio29" value="a">
+              <label class="form-check-label" for="radio29">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection29" id="radio29" value="b">
+              <label class="form-check-label" for="radio29">
+                no
+              </label>
+          </div>
+          <br>
+          <h4>質問30</h4>
+          <h5>自分の恋人(相手)から思うような愛情やサポートを受けていないとイライラする。</h5>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection30" id="radio30" value="a">
+              <label class="form-check-label" for="radio30">
+                yes
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="selection30" id="radio30" value="b">
+              <label class="form-check-label" for="radio30">
+                no
+              </label>
+          </div>
+
+    </div>
+</main>
+</body>
+</html>

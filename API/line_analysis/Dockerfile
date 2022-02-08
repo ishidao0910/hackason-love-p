@@ -1,0 +1,17 @@
+# python v3.6 をベースにDockerイメージを作成
+FROM python:3.8
+
+# 作業ディレクトリを指定
+WORKDIR /code
+
+# カレントディレクトリのファイルをDockerコンテナの｢/app｣ ディレクトリにコピー
+ADD . /code
+
+# インストール
+RUN pip install -r requirements.txt
+
+# 外部に公開するポートを指定
+EXPOSE 5003
+
+# コンテナの実行コマンドを指定
+CMD ["python", "code/line_analysis.py"]

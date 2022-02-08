@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <meta charset="utf-8">
+    <style>
+        label {
+            padding: 10px 40px;
+            color: #ffffff;
+            background-color: #dd287d;
+            cursor: pointer;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .box2 {
+            padding: 0.5em 1em;
+            margin: 2em 0;
+            font-weight: bold;
+            color: #6091d3;
+            /*文字色*/
+            background: #FFF;
+            border: solid 3px #00050a;
+            /*線*/
+            border-radius: 10px;
+            /*角の丸み*/
+        }
+
+        .box2 p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .circle {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+        }
+
+        .circle1 {
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">LoveP</p>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="p-2 text-dark" href="/">LovePとは？</a>
+            <a class="p-2 text-dark" href="/profile_edit">基本情報の編集</a>
+            <a class="p-2 text-dark" href="/add_girl">女の子の追加</a>
+            <a class="p-2 text-dark" href="/mypage">メインページ</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="/logout">ログアウト</a>
+    </header>
+    <main>
+        <div class="px-4 py-5 my-5 text-center">
+            <div class="jumbotron">
+                <h1>Simple LINE Analysis</h1>
+            </div>
+            <h4>女の子の追加</h4>
+            <!--アイコン-->
+            <img id="sample1" class="circle">
+            <form action="/add_girl" method="post" enctype="multipart/form-data">
+                <%- test -%>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h6">画像のアップロードをしてください
+                    </h1>
+                </div>
+                <br>
+                <label class="input-group-btn">
+                    <span>
+                        プロフィール画像のアップロード
+                <input type="file" id="file1" name="file1" style="display:none">
+                    </span>
+                </label>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h6">女の子の名前を入力(※女の子の名前は, LINEの表示名を記入してください.)
+                    </h1>
+                </div>
+                <input type="text" class="form-control" id="floatingInput" name="name" placeholder="女の子の名前を入力" value="">
+                <br>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">女の子を追加する</button>
+            </form>
+        </div>
+    </main>
+    <script>
+        //$("#sample1").attr("src", 'img url');
+        $("#sample1").attr("src", '');
+        // 1. ファイル選択後に呼ばれるイベント
+        $("#file1").on("change", function (e) {
+        // 2. 画像ファイルの読み込みクラス
+        var reader = new FileReader();
+        // 3. 準備が終わったら、id=sample1のsrc属性に選択した画像ファイルの情報を設定
+        reader.onload = function (e) {
+        $("#sample1").attr("src", e.target.result);
+        }
+        // 4. 読み込んだ画像ファイルをURLに変換
+        reader.readAsDataURL(e.target.files[0]);
+        console.log(e.target.files[0])
+        });
+    </script>
+</html>

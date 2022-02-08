@@ -1,0 +1,88 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="http://guide.withabout.net/guide/gp332/459916/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <meta charset="utf-8">
+    <!-- どのデバイスで見ても見え方を一緒にする = レスポンシブデザイン -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+
+label {
+    padding: 10px 40px;
+    color: #ffffff;
+    background-color: #dd287d;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.box2 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #00050a;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.circle {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+    }
+
+h4 {
+  /*線の種類（実線） 太さ 色*/
+  border-bottom: solid 3px black;
+}
+
+</style>
+</head>
+<body>
+<main>
+<div class="px-4 py-5 my-5 text-center">
+<div class="jumbotron">
+<h1>Simple LINE Analysis</h1>
+</div>
+<!--アイコン-->
+<img src="https://line-analysis.herokuapp.com/static/main.jpg" class="circle">
+<>
+<h4>ライントークのインポート方法</h4>
+<div class="box2">
+<p>分析したいトークルームののトーク画面を開きます。<br>
+   LINEのトーク画面右上のメニューバーから、設定画面(その他)を開きます。<br>
+   「トーク履歴を送信」を選択してテキストファイルをダウンロードし、そのファイルを使用します。
+</p>
+</div>
+<br>
+<div class="mb-3">
+    <form method="post" enctype="multipart/form-data">
+        <label for="file1">LINEトークファイルのアップロード</label>
+        <input type="file" id="file1" name="file1" multiple>
+        <br>
+        <button type="button" class="btn btn-lg btn-primary" > 分析を開始</button>
+      </div>
+     </form>
+ </div>
+</form>
+</div>
+</div>
+    </main>
+</body>
+</html>

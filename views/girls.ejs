@@ -1,0 +1,246 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <meta charset="utf-8">
+    <style>
+        label {
+            padding: 10px 40px;
+            color: #ffffff;
+            background-color: #dd287d;
+            cursor: pointer;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .box2 {
+            padding: 0.5em 1em;
+            margin: 2em 0;
+            font-weight: bold;
+            color: #6091d3;
+            /*文字色*/
+            background: #FFF;
+            border: solid 3px #00050a;
+            /*線*/
+            border-radius: 10px;
+            /*角の丸み*/
+        }
+
+        .box2 p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .circle {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+        }
+
+        .circle1 {
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+        }
+
+        h4 {
+            /*線の種類（実線） 太さ 色*/
+            border-bottom: solid 3px black;
+        }
+
+        .test a {
+            padding: 10px 40px;
+            color: #ffffff;
+            background-color: #dd287d;
+            cursor: pointer;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            color: White;
+            text-decoration: none;
+        }
+
+        .test a:hover {
+            color: white;
+        }
+
+        #ex_chart {
+            max-width: 640px;
+            max-height: 480px;
+        }
+
+        #ex_chart1 {
+            max-width: 640px;
+            max-height: 480px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">LoveP</p>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="p-2 text-dark" href="/">LovePとは？</a>
+            <a class="p-2 text-dark" href="/profile_edit">基本情報の編集</a>
+            <a class="p-2 text-dark" href="/add_girl">女の子の追加</a>
+            <a class="p-2 text-dark" href="/mypage">メインページ</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="/logout">ログアウト</a>
+    </header>
+    <main>
+
+        <!-- <% for(var i=0;i < body4.length; i++){ %>
+            <%-body4[i].user_id-%>
+            <%-body4[i].girls_id-%>
+            <%-body4[i].slag-%>
+            <%-body4[i].score-%>
+            <%-body4[i].date-%>
+            <br>
+        <% } %> -->
+        <div class="px-4 py-5 my-5 text-center">
+            <div class="jumbotron">
+                <h1>Simple LINE Analysis</h1>
+            </div>
+
+            <h4>
+                <%- body1[0].user_gn -%>
+            </h4>
+            <!--アイコン-->
+            <img src="<%- body1[0].img -%>"
+                class="circle"><br>
+            <br>
+            <div class='test'>
+                <a href="/analysis/<%- girls_id -%>">分析を開始する</a>
+            </div>
+            <br>
+            <h4>最新スコア</h4>
+            <!--DBから取得-->
+            <div class="progress" style="height: 50px;">
+                <% if (body4.length==0) { %>
+                <div class="progress-bar bg-success" role="progressbar" style="width:0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">0%</div>
+                </div>
+                <% }else{ %>
+                <div class="progress-bar bg-success" role="progressbar" style="width:<%-body4[0].score-%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%-body4[0].score -%>%</div>
+                </div>
+                <% } %>
+            <h4>直近スコアの推移</h4>
+            <!--グラフが入る-->
+            <center>
+                <canvas id="ex_chart1"></canvas>
+            </center>
+            <script>
+                // var count = body4.length
+                var ctx = document.getElementById('ex_chart1');
+                var labels_s = ''
+                var data_s = ''
+                var getTest = <%- JSON.stringify(body4)  %>; 
+                if(getTest.length==5){
+                    labels_s = [getTest[4].date, getTest[3].date, getTest[2].date, getTest[1].date, getTest[0].date]
+                    data_s = [getTest[4].score,getTest[3].score,getTest[2].score,getTest[1].score,getTest[0].score]
+                }else if(getTest.length==4){
+                    labels_s = [getTest[3].date, getTest[2].date, getTest[1].date, getTest[0].date]
+                    data_s = [getTest[3].score,getTest[2].score,getTest[1].score,getTest[0].score]
+                }else if(getTest.length==3){
+                    labels_s = [getTest[2].date, getTest[1].date, getTest[0].date]
+                    data_s = [getTest[2].score,getTest[1].score,getTest[0].score]
+                }else if(getTest.length==2){
+                    labels_s = [getTest[1].date, getTest[0].date]
+                    data_s = [getTest[1].score,getTest[0].score]
+                }else if(getTest.length==1){
+                    labels_s = [getTest[0].date]
+                    data_s = [getTest[0].score]
+                }else if(getTest.length==0){
+                    labels_s = []
+                    data_s = []
+                }
+                
+                var data = {
+                    
+                    labels: labels_s,
+                    // labels: ["body4[4].scor", "2", "3", "4", "5"],
+                    datasets: [{
+                        label: '直近スコアの推移',
+                        // data: [10, 8, 9, 5, 9],
+                        data: data_s,
+                        borderColor: 'rgba(255, 100, 100, 1)',
+                        lineTension: 0,
+                        fill: false,
+                        borderWidth: 3
+                    }]
+                };
+
+                var options = {
+                    scales: {
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: '月'
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                min: 300,
+                                userCallback: function (tick) {
+                                    return tick.toString() + '台';
+                                }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: '台数'
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: '販売台数'
+                    }
+                };
+
+                var options = {};
+
+                var ex_chart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: options
+                });
+            </script>
+            <h4>過去の記録</h4>
+            <% for(var i=0;i < body3.length; i++){ %>
+            <div class="list-group">
+                    <a href="<%-'/test/'+body3[i].user_id+'/'+body3[i].girls_id +'/'+ body3[i].slag-%>" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0"><%-body3[i].date-%>の分析結果</h6>
+                        </div>
+                        <small class="opacity-50 text-nowrap"><%-body3[i].date-%></small>
+                      </div>
+                    </a> 
+            </div>
+            <br>
+            <% } %>
+    </main>
+
+</html>

@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <style>
+        label {
+            padding: 10px 40px;
+            color: #ffffff;
+            background-color: #dd287d;
+            cursor: pointer;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .box2 {
+            padding: 0.5em 1em;
+            margin: 2em 0;
+            font-weight: bold;
+            color: #6091d3;
+            /*文字色*/
+            background: #FFF;
+            border: solid 3px #00050a;
+            /*線*/
+            border-radius: 10px;
+            /*角の丸み*/
+        }
+
+        .box2 p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .circle {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+        }
+
+        h4 {
+            /*線の種類（実線） 太さ 色*/
+            border-bottom: solid 3px black;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">LoveP</p>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="p-2 text-dark" href="/">LovePとは？</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="/mypage">メインページ</a>
+    </header>
+    <main>
+        <div class="px-4 py-5 my-5 text-center">
+            <div class="jumbotron">
+                <h1>LoveP</h1>
+                <h2>「男」による男の「欲」の為のツール</h2>
+            </div>
+            <!--アイコン-->
+            <img src="https://line-analysis.herokuapp.com/static/main.jpg" class="circle">
+            <h4>ライントークのインポート方法</h4>
+            <div class="box2">
+                <p>分析したいトークルームののトーク画面を開きます。<br>
+                    LINEのトーク画面右上のメニューバーから、設定画面(その他)を開きます。<br>
+                    「トーク履歴を送信」を選択してテキストファイルをダウンロードし、そのファイルを使用します。
+                </p>
+            </div>
+            <br>
+            <div class="mb-3">
+                <!--分析画面を載せる-->
+
+                <script>
+                    $(document).on('change', ':file', function () {
+                        var input = $(this),
+                            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                        input.parent().parent().next(':text').val(label);
+                    });
+                </script>
+                <form action="/suggestion/<%- girls_id -%>" method="post" enctype="multipart/form-data">
+                    <h1 class="h6">女の子の名前
+                    </h1>
+            </div>
+            <%- aaaa -%>
+            <input type="text" class="form-control" id="floatingInput" name="name" value="<%- user_name -%>"
+                disabled="disabled">
+            <br>
+            <label class="input-group-btn">
+                <span>
+                    LINEファイルをアップロードしてください
+                    <input type="file" id="file1" name="file1" style="display:none">
+                </span>
+            </label>
+            <input type="text" class="form-control" readonly="">
+            <br>
+            <br>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">分析を開始</button>
+            </form>
+        </div>
+        </form>
+        </div>
+        </div>
+    </main>
+</body>
+
+</html>

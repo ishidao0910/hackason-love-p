@@ -1,0 +1,83 @@
+version: "3"
+services:
+
+  db:
+    build: mysql
+    container_name: db_server
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: test
+      TZ: Asia/Tokyo
+    volumes:
+      - ./db-data:/var/lib/mysql
+    command: mysqld
+    networks:
+      - app_net
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "82:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - db
+      - web1
+      - web2
+      - web3
+      - web4
+    networks:
+      - app_net
+
+  web1:
+    build: ./add_db
+    container_name: web1
+    ports:
+      - 5001:5001
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+  web2:
+    build: ./user
+    container_name: web2
+    ports:
+      - 5002:5002
+    tty: true
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+  web3:
+    build: ./line_analysis
+    container_name: web3
+    ports:
+      - 5003:5003
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+  web4:
+    build: ./questionnaire
+    container_name: web4
+    ports:
+      - 5004:5004
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+volumes:
+  db-data:
+
+networks:
+  app_net:
+    driver: bridge

@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+            
+            
+            .form-signin {
+                width: 100%;
+                max-width: 330px;
+                padding: 15px;
+                margin: auto;
+            }
+            
+            .form-signin .checkbox {
+                font-weight: 400;
+            }
+            
+            .form-signin .form-floating:focus-within {
+              z-index: 2;
+            }
+            
+            .form-signin input[type="email"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            </style>
+    </head>
+    
+    <body>
+        <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+            <p class="h5 my-0 me-md-auto fw-normal">LoveP</p>
+            <nav class="my-2 my-md-0 me-md-3">
+                <a class="p-2 text-dark" href="/">LovePとは？</a>
+            </nav>
+        </header>
+                  <!--メイン-->
+                  <main>
+                      <main class="form-signin">
+                        <form action="/sinup" method="post"> 
+                        <center><h2>サインアップ</h2></center>   
+                            <div class="form-floating">
+                            <input type="mail" class="form-control" id="floatingInput" name="email" placeholder="e-mail" minlength="4">
+                            <label for="floatingPassword">メールアドレス</label>
+                            <p>メールアドレスを入力してください</p>
+                            </div>
+                            <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="ユーザID" minlength="4">
+                            <p>4文字以上で入力してください</p>
+                            <label for="floatingInput">ID</label>
+                          </div>
+                            <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" name="password" placeholder="パスワード" minlength="4">
+                            <p>4文字以上で入力してください</p>
+                            <label for="floatingPassword">パスワード
+                            </label>
+                          </div>
+                          <button class="w-100 btn btn-lg btn-primary" type="submit">ユーザー登録</button>
+                            </form>
+                            <%- body -%>
+                            <br>
+                            <p>
+                            「ユーザー登録」をクリックすると、
+                            <a class="nav-link active" aria-current="page" href="/terms_of_servic">利用規約</a>
+                            <a class="nav-link active" aria-current="page" href="/privacy">プライバシーポリシ</a>
+                            に同意したものとみなします
+                            </p>
+                        </main> 
+                  </main>
+        </body>
+</html>

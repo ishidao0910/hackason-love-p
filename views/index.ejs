@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <style>
+        label {
+            padding: 10px 40px;
+            color: #ffffff;
+            background-color: #dd287d;
+            cursor: pointer;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .box2 {
+            padding: 0.5em 1em;
+            margin: 2em 0;
+            font-weight: bold;
+            color: #6091d3;
+            /*文字色*/
+            background: #FFF;
+            border: solid 3px #00050a;
+            /*線*/
+            border-radius: 10px;
+            /*角の丸み*/
+        }
+
+        .box2 p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .circle {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+        }
+
+        h4 {
+            /*線の種類（実線） 太さ 色*/
+            border-bottom: solid 3px black;
+        }
+
+        .test a {
+            padding: 10px 40px;
+            color: #ffffff;
+            background-color: #dd287d;
+            cursor: pointer;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            color: White;
+            text-decoration: none;
+        }
+
+        .test a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">LoveP</p>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="p-2 text-dark" href="/">LovePとは？</a>
+        </nav>
+        <% if (fl==1) { %>
+            <a class="btn btn-outline-primary" href="/mypage">メインページ</a>
+            <% }else{ %>
+                <a class="btn btn-outline-primary" href="/login">ログイン</a>
+                <% } %>
+    </header>
+    <main>
+        <div class="px-4 py-5 my-5 text-center">
+            <div class="jumbotron">
+                <h1>LoveP</h1>
+                <h2>「男」による男の「欲」の為のツール</h2>
+            </div>
+            <!--アイコン-->
+            <img src="https://line-analysis.herokuapp.com/static/main.jpg" class="circle">
+            <h4>愛着スタイルのアンケート</h4>
+            <div class="box2">
+                <p>
+                    学術的に裏付けされた愛着スタイルをもとに<br>
+                    トーク履歴に対してサジェストをします
+                </p>
+            </div>
+            ※愛着スタイルはこちらを参考に作成しております<br>
+            <a class="p-2 text-dark" href="https://www.jstage.jst.go.jp/article/jjpsy1926/75/2/75_2_154/_pdf/-char/ja">参考論文</a><br>
+            
+            <img src="images/enqute.png" width="450" height="250">
+            <h4>ライントークのインポート方法</h4>
+            <div class="box2">
+                <p>分析したいトークルームののトーク画面を開きます。<br>
+                    LINEのトーク画面右上のメニューバーから、設定画面(その他)を開きます。<br>
+                    「トーク履歴を送信」を選択してテキストファイルをダウンロードし、そのファイルを使用します。
+                </p>
+            </div>
+            <br>
+            <div class="mb-3">
+                <!--分析画面を載せる-->
+                <h5>参考画像</h5>
+                <img src="images/test.png" width="450" height="250">
+                <h4>分析結果</h4>
+                <div class="box2">
+                    <p>
+                    <h5>感情の出現回数</h5>
+                    <h5>アクション数</h5>
+                    </p>
+                </div>
+                <br>
+                <br>
+                <img src="images/ss.png" width="450" height="250">
+                <img src="images/abc.png" width="450" height="250">
+                <img src="images/test1.png" width="450" height="250">
+                <img src="images/test5.png" width="450" height="250">
+                <h4>好きな人とのあゆみを遡る</h4>
+                <div class="box2">
+                    <p>
+                    <h5>好きな人とのあゆみを数値として遡ることができます</h5>
+                    </p>
+                </div>
+                <img src="images/test3.png" width="400" height="350">
+                <img src="images/gg.png" width="350" height="350">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class='test'>
+                    <a href="/mypage">今すぐ始める</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
