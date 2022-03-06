@@ -3,7 +3,8 @@
 <img width="791" alt="スクリーンショット 2021-12-20 21 12 35" src="https://user-images.githubusercontent.com/45090872/146765563-84b5cebf-fc0b-441b-bf36-aa880ab812a3.png">
 
 ## アーキテクチャー図
-<img width="1037" alt="スクリーンショット 2021-12-14 12 08 15" src="https://user-images.githubusercontent.com/45090872/145926228-e1641392-5d21-4844-b196-9bfbb5045049.png">
+<img width="1037" alt="スクリーンショット 2022-03-06 17 14 04" src="https://user-images.githubusercontent.com/73809994/156914895-cbec2394-85f6-48cc-ac60-a202120dd7ba.png">
+
 
 ## 開発環境
 ### node.js
